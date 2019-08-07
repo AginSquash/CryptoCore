@@ -21,11 +21,13 @@ namespace CryptoCore
         }
 
 
+
         public static byte[] EncryptStringToBytes_Aes(string plainText, byte[] Key) //byte[] IV
         {
             Aes aes = Aes.Create();
             aes.GenerateIV();
             byte[] IV = aes.IV;
+            File.WriteAllBytes("IV", IV);
                 // Check arguments.
                 if (plainText == null || plainText.Length <= 0)
                     throw new ArgumentNullException("plainText");
@@ -68,9 +70,7 @@ namespace CryptoCore
 
             public static string DecryptStringFromBytes_Aes(byte[] cipherText, byte[] Key)
             {
-            Aes aes = Aes.Create();
-            aes.GenerateIV();
-            byte[] IV = aes.IV;
+            byte[] IV = File.ReadAllBytes("IV");
 
             // Check arguments.
             if (cipherText == null || cipherText.Length <= 0)
