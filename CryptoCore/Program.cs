@@ -3,6 +3,7 @@ using System.IO;
 using System.Security.Cryptography;
 
 using static CryptoCore.AES_alg;
+using static CryptoCore.Client;
 
 namespace CryptoCore
 {
@@ -12,14 +13,16 @@ namespace CryptoCore
         {
             string original = "Some really secure data to encrypt/decrypt!!!!!";
 
-            AES_alg.GenerateAES("newaes.pem");
+            //Client.SendTest();
+            Client.Send4ever();
+            /*AES_alg.GenerateAES("newaes.pem");
             byte[] key = GetKey("newaes.pem");
 
             byte[] enct_text = EncryptStringToBytes_Aes(original, key);
             string roundtrip = DecryptStringFromBytes_Aes(enct_text, key);
             
             Console.WriteLine("Original:   {0}", original);
-            Console.WriteLine("Round Trip: {0}", roundtrip);
+            Console.WriteLine("Round Trip: {0}", roundtrip); */
 
      
         }
