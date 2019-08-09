@@ -18,6 +18,25 @@ namespace CryptoCore
             }
         }
 
+        public static string Send(string textToSend)
+        {
+            //---create a TCPClient object at the IP and port no.---
+            TcpClient client = new TcpClient(SERVER_IP, PORT_NO);
+            NetworkStream nwStream = client.GetStream();
+            byte[] bytesToSend = Encoding.ASCII.GetBytes(textToSend);
+
+            //---send the text---
+            
+            nwStream.Write(bytesToSend, 0, bytesToSend.Length);
+
+            //---read back the text---
+            byte[] bytesToRead = new byte[client.ReceiveBufferSize];
+            int bytesRead = nwStream.Read(bytesToRead, 0, client.ReceiveBufferSize);
+        
+            client.Close();
+            return Encoding.ASCII.GetString(bytesToRead, 0, bytesRead;
+        }
+
         public static void SendTest()
         {
             //---data to send to the server---
